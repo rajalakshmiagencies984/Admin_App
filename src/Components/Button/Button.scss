@@ -1,0 +1,13 @@
+.button-container{
+    .btn {
+            background-color: var(--peacock);
+            color: var(--white);
+            border: 2px solid white;
+    
+            &:hover {
+                background-color: var(--white);
+                color: var(--peacock);
+                border: 2px solid var(--peacock);
+            }
+        }
+}

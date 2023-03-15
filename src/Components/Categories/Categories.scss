@@ -1,0 +1,22 @@
+.category-container{
+    .category-list{
+        max-width: 30%;
+        min-width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 24px;
+        transition: 500ms;
+        cursor: pointer;
+        .title{
+            font-weight: 600;
+            font-size: 24px;
+            color: var(--black);
+        }
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+}
+

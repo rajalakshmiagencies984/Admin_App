@@ -1,0 +1,76 @@
+.navbar{
+    width: 100%;
+    position: sticky;
+    top:0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom:  2px solid var(--yellow);
+    .brand-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        .logo-container{
+            img{
+                height: 32px;
+                width: 32px;
+            }
+        }
+        .brand-name{
+            font-size: 24px;
+            color: var(--peacock);
+            font-weight: 400;
+        }
+
+    }
+    .right-container{
+        button{
+            background: var(--peacock);
+            color: var(--white);
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .offcanvas{
+            background-color: var(--yellow);
+            .offcanvas-body{
+                .profile{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap:12px;
+
+                    .logo-round{
+                        height: 60px;
+                        width: 60px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: var(--peacock);
+                        color: var(--white);
+                        border-radius: 50%;
+                        font-size: 24px;
+                    }
+                    .user-name{
+                        color: var(--white);
+                        font-weight: 500;
+                        font-size: 20px;
+                    }
+    
+                }
+
+                .logout-btn{
+                    .btn{
+                        border: 2px solid var((--peacock));
+                        &:hover{
+                            background-color: var(--white);
+                            color: var(--peacock);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
