@@ -12,17 +12,8 @@ const Categories = () => {
     {title:"Seeds",color:"#a5e887"}
   ]
   return (
-    <div className='category-container row'>
-       {category.map((c,i)=>(
-        <div key={i} style={{background:c.color}} className="col-sm-12 col-md-6 col-lg-4 category-list shadow mx-4 my-3">
-            <div className='image'>
-                <img src={img} alt="" />
-            </div>
-            <div className='title mb-3'>   
-                {c.title}
-            </div>
-        </div>
-       ))}
+    <div>
+      
     </div>
   )
 }
@@ -30,9 +21,3 @@ const Categories = () => {
 export default Categories
 
 
-// fungicide
-// insecticide
-// herbicides
-// crop enhancement
-// fertilizers
-// seeds

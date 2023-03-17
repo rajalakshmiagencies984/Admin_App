@@ -1,0 +1,31 @@
+.dynamicListContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dynamicList{
+    background-color: var(--peacock);
+    color: var(--white);
+    padding: 6px;
+    gap:6px;
+    border-radius: 12px;
+}
+
+.key{
+    text-transform: uppercase;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: var(--white);
+    
+    &:hover{
+        background-color: var(--white);
+        
+    }
+}

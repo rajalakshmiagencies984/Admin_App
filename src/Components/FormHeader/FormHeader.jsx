@@ -1,10 +1,10 @@
 import React from 'react'
-import img from '../../assets/logo.png'
+import logo from '../../assets/logo'
 import './FormHeader.scss'
 const FormHeader = () => {
   return (
    <div className="logo-container">
-            <img src={img} alt="logo-form" />
+            <img src={logo} alt="logo-form" />
             <p>Rajalakshmi Agencies</p>
     </div>
   )

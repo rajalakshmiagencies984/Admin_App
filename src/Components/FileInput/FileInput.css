@@ -1,0 +1,19 @@
+.react-image-file-to-base64 {
+    display: block !important;
+}
+
+.upload-btn{
+    border: 1px solid lightgray;
+}
+
+.upload-btn:hover{
+    background-color: white;
+    color:grey;
+    border: 1px solid lightgray;
+}
+
+.upload-btn:active{
+    background-color: white;
+        color: grey;
+        border: 1px solid lightgray;
+}
