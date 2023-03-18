@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import SideBar from '../../Components/SideBar/SideBar'
 import Input from '../../Components/Input/Input'
 import Button from '../../Components/Button/Button'
 import FormHeader from '../../Components/FormHeader/FormHeader'
@@ -47,6 +47,8 @@ const AddCategory = () => {
         }
     ]
   return (
+    <>
+    <SideBar />
     <div className='add-category-container'>
         <div className="box-outer">
           <div className="box shadow">
@@ -64,6 +66,7 @@ const AddCategory = () => {
           </div>
         </div>
     </div>
+    </>
   )
 }
 

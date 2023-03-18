@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import './AddAdmin.scss'
-
+import SideBar from '../../Components/SideBar/SideBar'
 import FormHeader from '../../Components/FormHeader/FormHeader'
 import Input from '../../Components/Input/Input'
 import Button from '../../Components/Button/Button'
@@ -50,6 +50,8 @@ const AddAdmin = () => {
         }
     ]
   return (
+    <>
+    <SideBar />
      <div className='add-admin-container'>
         <div className="box-outer">
           <div className="box shadow">
@@ -69,6 +71,7 @@ const AddAdmin = () => {
           </div>
         </div>
     </div>
+    </>
   )
 }
 

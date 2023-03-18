@@ -1,9 +1,12 @@
 .sidebar-container{
-    height: 100%;
+    height: 100vh;
+    position: fixed;
     width: 10%;
+    float:left;
     background-color:var(--green);
     color:white;
-  
+    border-right: 4px solid var(--green);
+    overflow-y:hidden;
     .logo-container{
        
         display: flex;
@@ -30,21 +33,33 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
         .sidelink{
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             background-color: var(--white);
+            height: fit-content;
             width: 100%;
-
             p{
                 color: var(--peacock);
                 font-size: 16px;
                 font-weight: 600;
             }
         }
+    }
+
+    .logout-container{
+      background-color: var(--white);
+      color: var(--peacock);
+      font-weight: 600;
+    
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+   
+
     }
 }
 

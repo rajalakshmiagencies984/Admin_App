@@ -7,6 +7,7 @@ import FormHeader from '../../Components/FormHeader/FormHeader'
 import SelectTag from '../../Components/Select/Select'
 import DynamicInput from '../../Components/DynamicInput/DynamicInput'
 import { v4 as uuidv4 } from 'uuid';
+import SideBar from '../../Components/SideBar/SideBar'
 const AddProduct = () => {
     const [name,setName]=useState("")
     const [mrp,setMRP]=useState("")
@@ -177,16 +178,18 @@ const AddProduct = () => {
 
    
   return (
-    <div className="add-product-container my-5">
-        <div className="row my-3">
-            <div className="col-sm-12 col-md-6 offset-md-3">
-                <div className="card shadow">
+    <>
+    <SideBar />
+    <div className="add-product-container ">
+        <div className="row m-3">
+            <div className="col-12 ">
+                <div className="card shadow mb-3">
                     <div className="card-body">
                         <FormHeader />
                             <p className="heading text-center">Add New Product</p>
-                            <form>
+                            <form className='row'>
                                {inputs.map((i,idx)=>(
-                                <div key={uuidv4()}>
+                                <div key={uuidv4()} className="col-6">
                                     {i.type=="select" ? <SelectTag key={idx} {...i} /> : i.type=="file" ?<FileInput key={idx} 
                                     {...i} /> : i.type=="dynamic" ? <DynamicInput key={idx} inputs={i} /> : <Input key={idx} {...i} /> }
                                 </div>
@@ -202,6 +205,7 @@ const AddProduct = () => {
         </div>
        
     </div>
+    </>
   )
 }
 
