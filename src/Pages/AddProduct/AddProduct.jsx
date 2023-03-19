@@ -173,7 +173,7 @@ const AddProduct = () => {
                 button:"Add Point",
                 delete:(e,id)=>{
                     e.preventDefault();
-                    const data = products.filter(f=> f.id!=id);
+                    const data = products.filter(f=> f.id!==id);
                     setEffects([...data])
                 }
             }
@@ -194,8 +194,8 @@ const AddProduct = () => {
                             <form >
                                {inputs.map((i,idx)=>(
                                 <>
-                                    {i.type=="select" ? <SelectTag key={idx} {...i} /> : i.type=="file" ?<FileInput key={idx} 
-                                    {...i} /> : i.type=="dynamic" ? <DynamicInput key={idx} inputs={i} /> : <Input key={idx} {...i} /> }
+                                    {i.type==="select" ? <SelectTag key={idx} {...i} /> : i.type==="file" ?<FileInput key={idx} 
+                                    {...i} /> : i.type==="dynamic" ? <DynamicInput key={idx} inputs={i} /> : <Input key={idx} {...i} /> }
                                 </>
                                ))}
                               

@@ -36,7 +36,7 @@ const DynamicInput = ({inputs}) => {
                 </div>
                 {inputs.inputs.map((i,idx)=>(
                     <>
-                        {i.type=="select" ? <Select key={idx} {...i} /> : i.type==="file" ? <FileInput key={idx} {...i} /> : <Input key={idx} {...i} /> }
+                        {i.type==="select" ? <Select key={idx} {...i} /> : i.type==="file" ? <FileInput key={idx} {...i} /> : <Input key={idx} {...i} /> }
                     </>
                 ))}
                 <Button value={inputs.button} handleClick={inputs.setData} />

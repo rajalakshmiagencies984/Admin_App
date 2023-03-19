@@ -12,7 +12,7 @@ const LandingPage = () => {
   },[navigate])
   return (
     <div className='landing-container'>
-        <img src={logo} alt="image" height={48} width={48} />
+        <img src={logo} alt="logo-landing" height={48} width={48} />
         <p className='m-3'>Rajalakshmi Agencies</p>
     </div>
   )
