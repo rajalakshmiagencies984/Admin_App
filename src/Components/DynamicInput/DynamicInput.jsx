@@ -6,10 +6,11 @@ import FileInput from '../FileInput/FileInput';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import styles from './DynamicInput.module.scss'
+
+
 const DynamicInput = ({inputs}) => {
-   
   
-    
+
 
   return (
     <div className='card my-3'>
@@ -22,21 +23,21 @@ const DynamicInput = ({inputs}) => {
                         {Object.keys(v).map((key, keyIndex)=>(
                                <div key={keyIndex}>
                                {key!=="id" &&
-                                 <div className="p-2">
-                                   <span className={styles.key}> {key} </span>: {v[key]}
+                                 <div className={styles.valu}>
+                                  {v[key]}
                                  </div>
                                 }
                                 </div> 
                         ))}
-                        <button className={`btn mx-2 btn-sm ${styles.button}`} onClick={(e)=>inputs.delete(e,v.id)}><MatericalIcon icon={"close"} size={24}/> </button>
+                        <button className={`btn btn-sm ${styles.button}`} onClick={(e)=>inputs.delete(e,v.id)}><MatericalIcon icon={"close"} size={14}/> </button>
                     </div>
                     </div>
                   ))}
                 </div>
-                {inputs.inputs.map((i)=>(
-                    <div key={uuidv4()}>
-                        {i.type=="select" ? <Select key={i.id} {...i} /> : i.type==="file" ? <FileInput key={i.id} {...i} /> : <Input key={i.id} {...i} /> }
-                    </div>
+                {inputs.inputs.map((i,idx)=>(
+                    <>
+                        {i.type=="select" ? <Select key={idx} {...i} /> : i.type==="file" ? <FileInput key={idx} {...i} /> : <Input key={idx} {...i} /> }
+                    </>
                 ))}
                 <Button value={inputs.button} handleClick={inputs.setData} />
         </div>

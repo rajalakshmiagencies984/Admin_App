@@ -1,8 +1,17 @@
 import React from 'react'
-import './Preview.scss'
-const Preview = () => {
+import styles from './Preview.module.scss'
+const Preview = ({name,image,color,background}) => {
   return (
-    <div>Preview</div>
+    
+    <div className={styles.categorylist} style={{background,color}} >
+      <div>
+        <img src={image} alt="" />
+      </div>
+      <div className={styles.title}>
+          {name}
+      </div>
+
+    </div>
   )
 }
 

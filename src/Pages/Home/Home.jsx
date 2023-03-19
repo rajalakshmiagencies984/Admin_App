@@ -5,9 +5,12 @@ import Categories from '../../Components/Categories/Categories'
 const Home = () => {
     
   return (
+    <>
+    <SideBar />
     <div className='home-container'>
-           <SideBar />
+           <Categories />
     </div>
+    </>
   )
 }
 

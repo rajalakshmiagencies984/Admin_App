@@ -1,7 +1,15 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './LandingPage.scss'
 import logo from '../../assets/logo'
+import { useNavigate } from 'react-router-dom'
 const LandingPage = () => {
+  const navigate = useNavigate();
+  useEffect(()=>{
+      setTimeout(()=>{
+          navigate('/home');
+
+      },3000)
+  },[navigate])
   return (
     <div className='landing-container'>
         <img src={logo} alt="image" height={48} width={48} />

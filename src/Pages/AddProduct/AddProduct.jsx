@@ -7,7 +7,9 @@ import FormHeader from '../../Components/FormHeader/FormHeader'
 import SelectTag from '../../Components/Select/Select'
 import DynamicInput from '../../Components/DynamicInput/DynamicInput'
 import { v4 as uuidv4 } from 'uuid';
+
 import SideBar from '../../Components/SideBar/SideBar'
+
 const AddProduct = () => {
     const [name,setName]=useState("")
     const [mrp,setMRP]=useState("")
@@ -15,13 +17,15 @@ const AddProduct = () => {
     const [image,setImage]=useState("");
     const [gst,setGst]=useState("")
     const [stock,setStock]=useState("")
-     const [chemicalName,setChemicalName]=useState("")
+    
+    const [chemicalName,setChemicalName]=useState("")
     const [percent,setPercent]=useState("")
-    const [chemical,setChemical]=useState([])
+    const [chemicals,setChemical]=useState([])
     const [crop,setCrop]=useState("")
     const [products,setProducts]=useState([])
     const [point,setPoint]=useState("")
     const [effects,setEffects]=useState([])
+    
     const inputs =[
         {
             type:"text",
@@ -83,8 +87,7 @@ const AddProduct = () => {
                 setStock(val)
             },
             value:stock
-        },
-          {
+        },{
                 type:"dynamic",
                 title:"Chemical Composition",
                 inputs:[
@@ -108,18 +111,19 @@ const AddProduct = () => {
                     }
                 ],
                 setData:()=>{
-                    setChemical([...chemical,{name:chemicalName,percent:percent,id:uuidv4()}])
+                    setChemical([...chemicals,{name:chemicalName,percentage:percent,id:uuidv4()}])
                     setChemicalName("")
                     setPercent("")
                 },
-                value:chemical,
+                value:chemicals,
                 button:"Add Chemical Composition",
                 delete:(e,id)=>{
                     e.preventDefault()
-                    const data = chemical.filter(v => v.id!==id);
+                    const data = chemicals.filter(v => v.id!==id);
                     setChemical([...data])
                 }
             },
+         
             {
                 type:"dynamic",
                 title:"Crops can be use with this products",
@@ -187,17 +191,18 @@ const AddProduct = () => {
                     <div className="card-body">
                         <FormHeader />
                             <p className="heading text-center">Add New Product</p>
-                            <form className='row'>
+                            <form >
                                {inputs.map((i,idx)=>(
-                                <div key={uuidv4()} className="col-6">
+                                <>
                                     {i.type=="select" ? <SelectTag key={idx} {...i} /> : i.type=="file" ?<FileInput key={idx} 
                                     {...i} /> : i.type=="dynamic" ? <DynamicInput key={idx} inputs={i} /> : <Input key={idx} {...i} /> }
-                                </div>
+                                </>
                                ))}
                               
+                            
                                
                                 
-                               <Button value="Add Product" />
+                               <Button value="Create Product" />
                             </form>
                     </div>
                 </div>
@@ -205,7 +210,7 @@ const AddProduct = () => {
         </div>
        
     </div>
-    </>
+     </>
   )
 }
 

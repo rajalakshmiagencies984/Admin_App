@@ -67,7 +67,7 @@ const AddAdmin = () => {
 
             </form>
           </div>
-           
+  
           </div>
         </div>
     </div>
