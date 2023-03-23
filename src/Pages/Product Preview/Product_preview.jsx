@@ -1,14 +1,14 @@
 import React from 'react'
 import logo from '../../assets/logo'
-import './Product_preview.css'
+import './Product_preview.scss'
 
 export default function Productpreview() {
     var title = "SEEDS"
     var description = "a statement that tells you how something or someone looks, sounds, etc. : words that describe something or someone."
     var composition = "a statement that tells you how something or someone looks, sounds, etc. : words that describe something or someone."
     return (
-        <div>
-            <div className="card view mt-5 p-2" >
+        <div className='product-preview-container'>
+            <div className="card mt-5 p-2" >
                 <div className="image mt-2">
                     <img className='card-img-top p-1' src={logo} alt="image" />
                 </div>
