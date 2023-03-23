@@ -7,6 +7,7 @@ import AddProduct from './Pages/AddProduct/AddProduct'
 import AddAdmin from './Pages/AddAdmin/AddAdmin'
 import AddCategory from './Pages/AddCategory/AddCategory'
 import Productpreview from './Pages/Product Preview/Product_preview'
+import OverviewPage from './Pages/OverviewProduct/OverviewPage'
 const AllRoutes = () => {
   return (
     <Routes>
@@ -16,7 +17,8 @@ const AllRoutes = () => {
         <Route path='/product/add' element={<AddProduct />} />
         <Route path='/admin/add' element={<AddAdmin/>} />
         <Route path='/category/add' element={<AddCategory/>} />
-        <Route path='/product/add/preview' element={<Productpreview/>} />
+        <Route path='/home/products' element={<Productpreview/>} />
+        <Route path='/home/overview' element={<OverviewPage/>}/>
     </Routes>
   )
 }
