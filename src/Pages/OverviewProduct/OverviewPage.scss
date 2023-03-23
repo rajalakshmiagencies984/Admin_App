@@ -1,10 +1,57 @@
-.overview-container{
+.overview-container {
     height: 100vh;
     width: 90%;
-   float: right;
-   .header{
-    text-align:start;
-    background-color:whitesmoke;
-    padding: 2%;
-   }
+    float: right;
+
+    .page-title {
+        font-size: 25px;
+        text-align: start;
+        background-color: whitesmoke;
+        padding: 1%;
+        font-weight: bold;
+        color: var(--peacock);
+    }
+
+    .wave {
+        display: block;
+        position: relative;
+        top: -16px;
+        height: 450px;
+        background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1899 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(2, 171, 238, 0.77)" d="M 0 68 C 1.5 68 -6.5 456 -5 456 L -5 456 L -5 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(2, 171, 238, 0.77)" d="M -6 456 C 348.59999999999997 456 821.4000000000001 -4 1176 -4 L 1176 -4 L 1176 0 L -6 0 Z" stroke-width="0"></path> <path fill="rgba(2, 171, 238, 0.77)" d="M 1175 -4 C 1392.2 -4 1681.8 0 1899 0 L 1899 0 L 1899 0 L 1175 0 Z" stroke-width="0"></path></svg>');
+        background-size: cover;
+        background-repeat: no-repeat;   
+        display: flex;
+        }
+    .chem-name{
+        color: white;
+        margin: 15%;
+    }
+    .chem-img{
+        display: block;
+        margin-left:auto;
+        margin-right: auto;
+        width:30%;
+        margin-top: 5%;
+    }
+    .info.container{
+        padding: 2% 10% 5% 10%;
+        text-align: justify;
+        h1,h3{
+            letter-spacing:5px;
+            word-spacing:1%;
+            line-height:40px;
+            color: var(--peacock);
+        }
+        h3{
+            margin-left: 10px!important;
+        }
+        p{
+            letter-spacing: 2px;
+            line-height:30px;
+            font-size: large;
+            margin-left: 25px;
+
+        }
+        
+    }
 }
