@@ -1,7 +1,7 @@
 import React from 'react'
 import img from './img.js'
 import './Categories.scss'
- 
+
 const Categories = () => {
   const category = [
     {title:"Fungicide",background:"#00aa95",color:"#FFFFFF"},
