@@ -1,16 +1,9 @@
 import React from 'react'
 import img from './img.js'
 import './Categories.scss'
- 
+import { useSelector } from 'react-redux'
 const Categories = () => {
-  const category = [
-    {title:"Fungicide",background:"#00aa95",color:"#FFFFFF"},
-    {title:"Insecticide",background:"#00cb75",color:"#FFFFFF"},
-    {title:"Herbicides",background:"#a5e887",color:"#FFFFFF"},
-    {title:"Crop Enhancement",background:"#00aa95",color:"#FFFFFF"},
-    {title:"Fertilizers",background:"#00cb75",color:"#FFFFFF"},
-    {title:"Seeds",background:"#a5e887",color:"#FFFFFF"}
-  ]
+  const category = useSelector((state)=>(state.category))
   return (
     <div className='container category-container'>
         <h2 className='p-2 header-title my-3'>Categories</h2>

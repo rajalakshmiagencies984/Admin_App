@@ -1,7 +1,6 @@
 .category-container{
     .header-title{
         color: var(--peacock);
-
     }
     .category-list{
         display: flex;
@@ -17,7 +16,7 @@
             width: 225px;
         }
         &:hover{
-            transform: scale(0.91);
+            transform: scale(0.81);
             cursor: pointer;
         }
     }

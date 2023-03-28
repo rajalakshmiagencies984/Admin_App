@@ -1,22 +1,39 @@
 import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import SideBar from '../../Components/SideBar/SideBar'
 import Input from '../../Components/Input/Input'
 import Button from '../../Components/Button/Button'
 import FormHeader from '../../Components/FormHeader/FormHeader'
 import FileInput from '../../Components/FileInput/FileInput'
 import Preview from '../../Components/Preview/Preview'
+import {v4 as uuidv4} from  'uuid'
 import './AddCategory.scss'
-
+import { addNewCategory } from '../../reducers/categorySlice'
 const AddCategory = () => {
     const [name,setName]=useState("")
     const [image,setImage]=useState("")
     const [background,setBackground]=useState("#00aa95")
     const [color,setColor]=useState("#FFFFFF")
     const [preview,setPreview]=useState(false)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     const handlePreview = ()=>{
         setPreview(!preview)
     }
+
+    const handleSubmit =async()=>{
+        try {
+            await dispatch(addNewCategory(Object({name,image,background,color})))
+            navigate('/home')
+        } catch (error) {
+            alert("Error");
+        }
+       
+    }
+
 
     const inputs=[
         {
@@ -54,6 +71,8 @@ const AddCategory = () => {
             value:color
         }
     ]
+
+
   return (
     <>
     <SideBar />
@@ -67,7 +86,7 @@ const AddCategory = () => {
             <Preview name={name} image={image} background={background} color={color}  /> 
             <div className='row'>
                     <div className="col-6">
-                        <Button value="Create Category" />
+                        <Button handleClick={handleSubmit} value="Create Category" />
                     </div>
                     <div className="col-6">
                         <Button handleClick={handlePreview} value="Edit" />
@@ -78,9 +97,9 @@ const AddCategory = () => {
           <div className="form-container my-3">
             <form >
              {inputs.map((i,idx)=>(
-                <>
-                   {i.type==="file" ?<FileInput key={idx} {...i} />  : <Input key={idx} {...i} /> }
-                </>
+                <div key={idx}>
+                   {i.type==="file" ?<FileInput  {...i} />  : <Input {...i} /> }
+                </div>
              ))}
              
             <Button handleClick={handlePreview} value="Preview" /> 
