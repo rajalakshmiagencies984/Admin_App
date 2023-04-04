@@ -1,0 +1,27 @@
+.single-product-container{
+    width: 100%;
+    border-radius:0 0 24px 24px;
+    .banner{
+        background-color: var(--yellow);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        .product-banner{
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            .product-name{
+                font-size: 32px;
+
+            }
+            .product-category{
+                font-size: 24px;
+            }
+        }
+
+        
+    }
+}

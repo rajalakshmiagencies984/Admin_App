@@ -10,16 +10,14 @@ import styles from './DynamicInput.module.scss'
 
 const DynamicInput = ({inputs}) => {
   
-
-
   return (
     <div className='card my-3'>
         <div className="card-body">
                 <p>{inputs.title}</p>
                 <div className={styles.dynamicListContainer}>
-                  {inputs.value.map(v=>(
+                  {inputs.value.map((v,i)=>(
                     <div className={` m-3 ${styles.dynamicList}`}>
-                        <div key={uuidv4()}> 
+                        <div key={i}> 
                         {Object.keys(v).map((key, keyIndex)=>(
                                <div key={keyIndex}>
                                {key!=="id" &&
@@ -35,9 +33,9 @@ const DynamicInput = ({inputs}) => {
                   ))}
                 </div>
                 {inputs.inputs.map((i,idx)=>(
-                    <>
-                        {i.type==="select" ? <Select key={idx} {...i} /> : i.type==="file" ? <FileInput key={idx} {...i} /> : <Input key={idx} {...i} /> }
-                    </>
+                    <div key={idx}>
+                        {i.type==="select" ? <Select {...i} /> : i.type==="file" ? <FileInput  {...i} /> : <Input  {...i} /> }
+                    </div>
                 ))}
                 <Button value={inputs.button} handleClick={inputs.setData} />
         </div>

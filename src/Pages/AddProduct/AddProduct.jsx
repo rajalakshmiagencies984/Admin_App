@@ -7,17 +7,27 @@ import FormHeader from '../../Components/FormHeader/FormHeader'
 import SelectTag from '../../Components/Select/Select'
 import DynamicInput from '../../Components/DynamicInput/DynamicInput'
 import { v4 as uuidv4 } from 'uuid';
-
+import { API_addProduct } from '../../api'
+import { useSelector,useDispatch } from 'react-redux'
 import SideBar from '../../Components/SideBar/SideBar'
+import { addCategoryCount } from '../../reducers/features/category/categorySlice'
+import { addProduct } from '../../reducers/features/products/productSlice'
+import { useNavigate } from 'react-router-dom'
+
 
 const AddProduct = () => {
+
+    const categorys = useSelector((state)=>(state.category));
+    const dispatch = useDispatch();
+    const navigate=useNavigate();
+
+    //state
     const [name,setName]=useState("")
     const [mrp,setMRP]=useState("")
     const [category,setCategory]=useState("")
     const [image,setImage]=useState("");
     const [gst,setGst]=useState("")
     const [stock,setStock]=useState("")
-    
     const [chemicalName,setChemicalName]=useState("")
     const [percent,setPercent]=useState("")
     const [chemicals,setChemical]=useState([])
@@ -26,6 +36,7 @@ const AddProduct = () => {
     const [point,setPoint]=useState("")
     const [effects,setEffects]=useState([])
     
+
     const inputs =[
         {
             type:"text",
@@ -62,13 +73,8 @@ const AddProduct = () => {
             setData:(val)=>{
                 setCategory(val)
             },
-            dataList:[
-                'Fungicide', 
-                'Insecticide',
-                'Herbicide', 
-                'Fertilizers', 
-                'Seeds'
-        ],
+            dataList:categorys.map(c=> c.title),
+
         value:category
         },
         {
@@ -177,9 +183,32 @@ const AddProduct = () => {
                     setEffects([...data])
                 }
             }
-
         ]
 
+        const handleSubmit = async()=>{ 
+            let obj={
+                name,
+                mrp,
+                stock,
+                image,
+                category,
+                gst,
+                chemicals,
+                products,
+                effects
+            }
+            try {
+                const {data}=await API_addProduct(obj);
+                const {_id,category}=data
+                dispatch(addProduct(Object(data)))
+                const addCategoryCountObject = {_id,title:category}
+                dispatch(addCategoryCount(Object(addCategoryCountObject)))
+                navigate('/home');
+            } catch (error) {
+                console.log("error")
+                console.log(error)
+            }
+        }
    
   return (
     <>
@@ -191,26 +220,24 @@ const AddProduct = () => {
                     <div className="card-body">
                         <FormHeader />
                             <p className="heading text-center">Add New Product</p>
-                            <form >
-                               {inputs.map((i,idx)=>(
-                                <>
-                                    {i.type==="select" ? <SelectTag key={idx} {...i} /> : i.type==="file" ?<FileInput key={idx} 
-                                    {...i} /> : i.type==="dynamic" ? <DynamicInput key={idx} inputs={i} /> : <Input key={idx} {...i} /> }
-                                </>
-                               ))}
-                              
-                            
                                
-                                
-                               <Button value="Create Product" />
-                            </form>
+                                <form >
+                                    {inputs.map((i,idx)=>(
+                                        <div key={idx}>
+                                            {i.type==="select" ? <SelectTag  {...i} /> : i.type==="file" ?<FileInput 
+                                            {...i} /> : i.type==="dynamic" ? <DynamicInput inputs={i} /> : <Input  {...i} /> }
+                                        </div>
+                                    ))}
+                                    <Button handleClick={handleSubmit} value="Create Product" />
+                                </form>
+
                     </div>
                 </div>
             </div>
         </div>
        
     </div>
-     </>
+    </>
   )
 }
 

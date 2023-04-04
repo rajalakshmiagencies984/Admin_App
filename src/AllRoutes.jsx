@@ -8,6 +8,8 @@ import AddAdmin from './Pages/AddAdmin/AddAdmin'
 import AddCategory from './Pages/AddCategory/AddCategory'
 import Productpreview from './Pages/Product Preview/Product_preview'
 import OverviewPage from './Pages/OverviewProduct/OverviewPage'
+import SingleProduct from './Pages/SingleProduct/SingleProduct'
+import Products from './Pages/Products/Products'
 const AllRoutes = () => {
   return (
     <Routes>
@@ -19,6 +21,8 @@ const AllRoutes = () => {
         <Route path='/category/add' element={<AddCategory/>} />
         <Route path='/home/products' element={<Productpreview/>} />
         <Route path='/home/overview' element={<OverviewPage/>}/>
+        <Route path='/products/:category' element={<Products/>} />
+        <Route path='/products/:category/:id' element={<SingleProduct/>}/>
     </Routes>
   )
 }
