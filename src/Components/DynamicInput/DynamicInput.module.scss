@@ -12,18 +12,25 @@
     gap:6px;
     border-radius: 12px;
 }
-
+.button1{
+    display: flex;
+    gap: 4px;
+}
 .value{
     font-size: 14px;
     margin: 2px;
+    width: max-content;
 }
 .button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6;
-  
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50%;
+    font-weight: bolder;
+    padding: 3px 5px 0px 5px;
     background-color: var(--white);
+  
     
     &:hover{
         background-color: var(--white);

@@ -19,7 +19,7 @@ const DynamicInput = ({inputs}) => {
                 <div className={styles.dynamicListContainer}>
                   {inputs.value.map(v=>(
                     <div className={` m-3 ${styles.dynamicList}`}>
-                        <div key={uuidv4()}> 
+                        <div className={`${styles.button1}`} key={uuidv4()}> 
                         {Object.keys(v).map((key, keyIndex)=>(
                                <div key={keyIndex}>
                                {key!=="id" &&
@@ -29,7 +29,7 @@ const DynamicInput = ({inputs}) => {
                                 }
                                 </div> 
                         ))}
-                        <button className={`btn btn-sm ${styles.button}`} onClick={(e)=>inputs.delete(e,v.id)}><MatericalIcon icon={"close"} size={14}/> </button>
+                        <button className={`btn btn-sm ${styles.button}`} onClick={(e)=>inputs.delete(e,v.id)}><MatericalIcon icon={"close"} size={15}/> </button>
                     </div>
                     </div>
                   ))}
