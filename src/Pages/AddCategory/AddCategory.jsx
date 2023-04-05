@@ -7,43 +7,42 @@ import Button from '../../Components/Button/Button'
 import FormHeader from '../../Components/FormHeader/FormHeader'
 import FileInput from '../../Components/FileInput/FileInput'
 import Preview from '../../Components/Preview/Preview'
-import {v4 as uuidv4} from  'uuid'
 import './AddCategory.scss'
-import { addNewCategory } from '../../reducers/categorySlice'
+import { API_addNewCategory } from '../../api'
+import { addCategory } from '../../reducers/features/category/categorySlice'
+
+
+
 const AddCategory = () => {
-    const [name,setName]=useState("")
+    const [title,setTitle]=useState("")
     const [image,setImage]=useState("")
     const [background,setBackground]=useState("#00aa95")
     const [color,setColor]=useState("#FFFFFF")
     const [preview,setPreview]=useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-
     const handlePreview = ()=>{
         setPreview(!preview)
     }
-
     const handleSubmit =async()=>{
         try {
-            await dispatch(addNewCategory(Object({name,image,background,color})))
+            const {data} = await API_addNewCategory({title,image,background,color});
+            dispatch(addCategory(Object(data)))
             navigate('/home')
         } catch (error) {
             alert("Error");
+            console.log(error)
         }
-       
     }
-
-
     const inputs=[
         {
             type:"text",
             id:"category-name",
             label:"Category Name",
             setData:(val)=>{
-                setName(val);
+                setTitle(val);
             },
-            value:name
+            value:title
         },
         {
             type:"file",
@@ -83,7 +82,7 @@ const AddCategory = () => {
           <p className="text-center heading">Create New Category</p>
           {preview ? 
           <>
-            <Preview name={name} image={image} background={background} color={color}  /> 
+            <Preview name={title} image={image} background={background} color={color}  /> 
             <div className='row'>
                     <div className="col-6">
                         <Button handleClick={handleSubmit} value="Create Category" />
@@ -101,13 +100,10 @@ const AddCategory = () => {
                    {i.type==="file" ?<FileInput  {...i} />  : <Input {...i} /> }
                 </div>
              ))}
-             
             <Button handleClick={handlePreview} value="Preview" /> 
-           
-           
             </form>
           </div>
-}
+        }
           </div>
         </div>
     </div>

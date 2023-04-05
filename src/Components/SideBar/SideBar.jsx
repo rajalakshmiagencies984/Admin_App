@@ -42,15 +42,15 @@ const SideBar = () => {
 
         <div className="sidebar-links ">
             {links.map((l,i)=>(
-              <div className='sidelink shadow mb-2 p-1' key={i}  role="button" onClick={()=>handleNavigate(l.link)}  >     
-                    <MaterialIcon icon={l.icon}  size={24} color={"#00cb75"} />
+              <div className='sidelink mb-2 p-1' key={i}  role="button" onClick={()=>navigate(l.link)}  >     
+                    <MaterialIcon icon={l.icon}  size={24} color={"#FFF"} />
                     <p>{l.title}</p>
               </div>
             ))}
         </div>
 
         <div className='logout-container p-1'>
-              <MaterialIcon icon={"logout"} size={24} color={"#00cb75"}  />
+              <MaterialIcon icon={"logout"} size={24} color={"#FFF"}  />
               Logout
          
         </div>
