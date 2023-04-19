@@ -23,14 +23,14 @@ const Products = () => {
   return (
     <>
       <SideBar />
-      <div className='products-container container my-5'>
+      <div className='products-container p-2 my-5'>
           <h2>{category}</h2>
           <p className='total-product'>Total Products - {product.length}</p>
           
           <div className='row product-list-container'>
             {product.map(p=>(
               
-              <div className='col-3' key={p._id}>
+              <div className='col-3 my-3' key={p._id}>
                   <div className="card shadow product-list-item" >
                           <div className="icon-top">  
                             <div>
@@ -55,7 +55,7 @@ const Products = () => {
                               </div>
                             
                               <div className="sold">
-                                  Sold  - {p.sold}
+                                  Sold  - {p.sold || 0}
                               </div>
 
                               <div className="price">
