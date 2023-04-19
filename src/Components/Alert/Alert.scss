@@ -1,0 +1,9 @@
+.alert-wrapper {
+    display: flex;
+    z-index: 2001;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    flex-direction: column-reverse;
+
+}

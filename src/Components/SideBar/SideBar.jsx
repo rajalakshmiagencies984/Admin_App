@@ -40,7 +40,7 @@ const SideBar = () => {
             <p>Rajalakshmi Agencies</p>
         </div>
 
-        <div className="sidebar-links ">
+        <div className="sidebar-links">
             {links.map((l,i)=>(
               <div className='sidelink mb-2 p-1' key={i}  role="button" onClick={()=>navigate(l.link)}  >     
                     <MaterialIcon icon={l.icon}  size={24} color={"#FFF"} />

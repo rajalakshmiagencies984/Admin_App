@@ -1,0 +1,33 @@
+.loading-container{
+    height: 100vh;
+    width: 100%;
+
+    background-color: rgba(0,0,0,.5);
+   
+    
+    position: fixed;
+    z-index: 1001;
+    .loader{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: var(--yellow);
+        width:400px;
+        border-radius: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        img{
+            height: 200px;
+            width: 200px;
+        }
+
+        .loading{
+            font-size: 18px;
+            color: var(--white);
+        }
+    }
+}

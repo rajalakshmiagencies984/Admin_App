@@ -2,14 +2,36 @@ import React from 'react'
 import MatericalIcon from 'material-icons-react'
 import './Categories.scss'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { deleteCategory } from '../../reducers/features/category/categorySlice'
+import { setLoading } from '../../reducers/features/loading/loadingSlice'
+import { API_deleteCategory } from '../../api'
 const Categories = () => {
   const category = useSelector((state)=>(state.category))
   const navigate=useNavigate();
+  const dispatch=useDispatch();
 
   const handleNaviagte = (e,title)=>{
     e.preventDefault();
     navigate(`/products/${title}`)
+  }
+
+  const handleNavigateEdit = (e,id)=>{
+    e.preventDefault();
+    navigate(`/category/edit/${id}`)
+  }
+
+  const handleDelete =async(e,id)=>{
+    dispatch(setLoading(true))
+    e.preventDefault();
+    try {
+      const {data}=await API_deleteCategory({id});
+      dispatch(deleteCategory(Boolean(id)))
+    } catch (error) {
+      
+    }
+    dispatch(setLoading(false))
   }
 
   return (
@@ -20,10 +42,10 @@ const Categories = () => {
               <div key={c._id}  className='col-4 shadow category-list' style={{background:c.background,color:c.color}}>
                 
                 <div className="icon-top">
-                    <div style={{background:c.color,width:"fit-content",borderRadius:"50%",padding:"6px"}}>
+                    <div className='shadow'  style={{background:c.color,width:"fit-content",borderRadius:"50%",padding:"6px"}} role="button" onClick={(e)=>handleNavigateEdit(e,c._id)}>
                       <MatericalIcon icon="edit" size={24} color={c.background} />
                     </div>
-                    <div style={{background:c.color,width:"fit-content",borderRadius:"50%",padding:"6px"}}>
+                    <div className='shadow' role="button" onClick={(e)=>handleDelete(e,c._id)}  style={{background:c.color,width:"fit-content",borderRadius:"50%",padding:"6px"}}>
                       <MatericalIcon icon="delete" size={24} color={c.background} />
                     </div>
                 </div>

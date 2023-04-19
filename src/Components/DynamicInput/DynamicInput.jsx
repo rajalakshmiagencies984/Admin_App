@@ -21,7 +21,7 @@ const DynamicInput = ({inputs}) => {
                         {Object.keys(v).map((key, keyIndex)=>(
                                <div key={keyIndex}>
                                {key!=="id" &&
-                                 <div className={styles.valu}>
+                                 <div className={styles.value}>
                                   {v[key]}
                                  </div>
                                 }

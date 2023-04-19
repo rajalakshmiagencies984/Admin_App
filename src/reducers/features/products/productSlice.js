@@ -38,9 +38,19 @@ export const productSlice = createSlice({
         },
         addProduct:(state,action)=>{
             return state=[...state,action.payload]
+        },
+        deleteProduct:(state,action)=>{
+            const id=action.payload
+            return state.filter(s=> s._id!==id);
+        },
+        editProduct:(state,action)=>{
+             const {_id}=action.payload;
+             const idx= state.findIndex(s=> s._id==_id)
+             state[idx]={...action.payload}
+             return state
         }
     }
 })
 
-export const {getProducts,addProduct}=productSlice.actions
+export const {getProducts,addProduct,deleteProduct,editProduct}=productSlice.actions
 export default productSlice.reducer
