@@ -1,26 +1,28 @@
-import React,{ useState} from 'react'
+import React,{ useEffect, useState} from 'react'
 import FileInput from '../../Components/FileInput/FileInput'
-import './AddProduct.scss'
+import './EditProduct.scss'
 import Input from '../../Components/Input/Input'
 import Button from '../../Components/Button/Button'
 import FormHeader from '../../Components/FormHeader/FormHeader'
 import SelectTag from '../../Components/Select/Select'
 import DynamicInput from '../../Components/DynamicInput/DynamicInput'
 import { v4 as uuidv4 } from 'uuid';
-import { API_addProduct } from '../../api'
+import { API_editProduct } from '../../api'
 import { useSelector,useDispatch } from 'react-redux'
 import SideBar from '../../Components/SideBar/SideBar'
-import { addCategoryCount } from '../../reducers/features/category/categorySlice'
-import { addProduct } from '../../reducers/features/products/productSlice'
-import { useNavigate } from 'react-router-dom'
+import { editProduct } from '../../reducers/features/products/productSlice'
+
+import { useNavigate,useParams } from 'react-router-dom'
+import { setLoading } from '../../reducers/features/loading/loadingSlice'
 
 
-
-const AddProduct = () => {
+const EditProduct = () => {
 
     const categorys = useSelector((state)=>(state.category));
+    const reduxProducts = useSelector((state)=>(state.product))
     const dispatch = useDispatch();
     const navigate=useNavigate();
+    const {id}=useParams();
 
     //state
     const [name,setName]=useState("")
@@ -204,6 +206,7 @@ const AddProduct = () => {
         ]
 
         const handleSubmit = async()=>{ 
+            dispatch(setLoading(true))
             let obj={
                 name,
                 stock,
@@ -215,17 +218,30 @@ const AddProduct = () => {
                 effects
             }
             try {
-                const {data}=await API_addProduct(obj);
-                const {_id,category}=data
-                dispatch(addProduct(Object(data)))
-                const addCategoryCountObject = {_id,title:category}
-                dispatch(addCategoryCount(Object(addCategoryCountObject)))
-                navigate('/home');
+                const {data}=await API_editProduct(obj);
+                dispatch(editProduct(Object(data)))
+                navigate(`/product/${data.category}/${data._id}`);
             } catch (error) {
                 console.log("error")
                 console.log(error)
             }
+            dispatch(setLoading(false))
         }
+
+        useEffect(()=>{
+            dispatch(setLoading(true))
+            const filter_product = reduxProducts.filter(rp=> rp._id===id);
+            let data=filter_product[0];
+            setName(data.name);
+            setStock(data.stock)
+            setImage(data.image)
+            setCategory(data.category)
+            setPrices(data.prices)
+            setChemical(data.chemicals)
+            setProducts(data.products)
+            setEffects(data.effects)
+            dispatch(setLoading(false))
+        },[id])
    
   return (
     <>
@@ -236,7 +252,7 @@ const AddProduct = () => {
                 <div className="card shadow mb-3">
                     <div className="card-body">
                         <FormHeader />
-                            <p className="heading text-center">Add New Product</p>
+                            <p className="heading text-center">Edit {name}</p>
                                
                                 <form >
                                     {inputs.map((i,idx)=>(
@@ -245,7 +261,7 @@ const AddProduct = () => {
                                             {...i} /> : i.type==="dynamic" ? <DynamicInput inputs={i} /> : <Input  {...i} /> }
                                         </div>
                                     ))}
-                                    <Button handleClick={handleSubmit} value="Create Product" />
+                                    <Button handleClick={handleSubmit} value={`Edit ${name}`} />
                                 </form>
 
                     </div>
@@ -258,4 +274,4 @@ const AddProduct = () => {
   )
 }
 
-export default AddProduct
+export default EditProduct

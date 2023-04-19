@@ -1,25 +1,28 @@
-import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React,{useEffect, useState} from 'react'
+import { useNavigate,useParams } from 'react-router-dom'
+import { useDispatch,useSelector } from 'react-redux'
 import SideBar from '../../Components/SideBar/SideBar'
 import Input from '../../Components/Input/Input'
 import Button from '../../Components/Button/Button'
 import FormHeader from '../../Components/FormHeader/FormHeader'
 import FileInput from '../../Components/FileInput/FileInput'
 import Preview from '../../Components/Preview/Preview'
-import './AddCategory.scss'
-import { API_addNewCategory } from '../../api'
-import { addCategory } from '../../reducers/features/category/categorySlice'
+import { setLoading } from '../../reducers/features/loading/loadingSlice'
+import './EditCategory.scss'
+import { API_editCategory } from '../../api'
+import { editCategory } from '../../reducers/features/category/categorySlice'
 
 
 
-const AddCategory = () => {
+const EditCategory = () => {
+    const {id}=useParams();
+    const category = useSelector((state)=>(state.category))
     const [title,setTitle]=useState("")
     const [image,setImage]=useState("")
-    const [background,setBackground]=useState("#00aa95")
-    const [color,setColor]=useState("#FFFFFF")
-    const [gst,setGst]=useState("")
+    const [background,setBackground]=useState("")
+    const [color,setColor]=useState("")
     const [preview,setPreview]=useState(false)
+    const [gst,setGst]=useState("")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handlePreview = ()=>{
@@ -27,24 +30,27 @@ const AddCategory = () => {
     }
     const handleSubmit =async()=>{
         try {
-            const {data} = await API_addNewCategory({title,image,gst,background,color});
-            dispatch(addCategory(Object(data)))
+            const {data} = await API_editCategory({id,gst,image,background,color});
+            dispatch(editCategory(Object(data)))
             navigate('/home')
         } catch (error) {
-            alert("Error");
             console.log(error)
+            alert("Error");
         }
     }
+    useEffect(()=>{
+        dispatch(setLoading(true))
+        const data = category.filter(c=> c._id===id);
+        let values=data[0];
+        setTitle(values.title)
+        setGst(values.gst)
+        setImage(values.image);
+        setBackground(values.background)
+        setColor(values.color)
+        dispatch(setLoading(false))
+    },[id])
     const inputs=[
-        {
-            type:"text",
-            id:"category-name",
-            label:"Category Name",
-            setData:(val)=>{
-                setTitle(val);
-            },
-            value:title
-        },
+       
         {
             type:"number",
             id:"gst-percent-category",
@@ -89,16 +95,16 @@ const AddCategory = () => {
         <div className="box-outer">
           <div className="box shadow">
           <FormHeader />
-          <p className="text-center heading">Create New Category</p>
+          <p className="text-center heading">Edit {title}</p>
           {preview ? 
           <>
             <Preview name={title} image={image} background={background} color={color}  /> 
             <div className='row'>
                     <div className="col-6">
-                        <Button handleClick={handleSubmit} value="Create Category" />
+                        <Button handleClick={handleSubmit} value={`Edit ${title}`} />
                     </div>
                     <div className="col-6">
-                        <Button handleClick={handlePreview} value="Edit" />
+                        <Button handleClick={handlePreview} value="Go Back" />
                     </div>
                 </div>
             </>
@@ -121,4 +127,4 @@ const AddCategory = () => {
   )
 }
 
-export default AddCategory
+export default EditCategory
