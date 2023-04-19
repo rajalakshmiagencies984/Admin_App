@@ -51,12 +51,25 @@ const SingleProduct = () => {
               <div role="button" onClick={e=>handleEdit(e)} className='icon-item shadow'>
                 <MaterialIcon icon="edit" size={24}  color="#a5e887" />
               </div>
-              <div role="button" onClick={e=>handleDelete(e)} className='icon-item shadow'>
-                <MaterialIcon icon="delete" size={24} color="#a5e887" />
+              <div role="button" onClick={e=>handleDelete(e)} className='icon-item1 shadow'>
+                <MaterialIcon icon="delete" size={24} color="red" />
               </div>
           </div>
 
+          <div className="stats card shadow p-2">
+                <div className="card-body">
+                    <h4>Stats</h4>
+                    <ul className="list-group">
+                          <li className="list-group-item">Sold - {p.sold} </li>
+                          <li className="list-group-item">In Stock - {p.stock}</li>
+                          <li className='list-group-item'>GST - {categories.filter(c=> c.title==category)[0]?.gst} % </li>
+                          <li className='list-group-item'>Created On - {moment(p.createdOn).fromNow()}</li>
+                    </ul>
+                </div>
+          </div>
+
        <div className="details-container my-3">
+
 
           <div className="card shadow p-2">
                 <div className="card-body">
@@ -103,17 +116,7 @@ const SingleProduct = () => {
                 </div>
           </div>
 
-          <div className="card shadow p-2">
-                <div className="card-body">
-                    <h4>Stats</h4>
-                    <ul className="list-group">
-                          <li className="list-group-item">Sold - {p.sold} </li>
-                          <li className="list-group-item">In Stock - {p.stock}</li>
-                          <li className='list-group-item'>GST - {categories.filter(c=> c.title==category)[0]?.gst} % </li>
-                          <li className='list-group-item'>Created On - {moment(p.createdOn).fromNow()}</li>
-                    </ul>
-                </div>
-          </div>
+
     </div>
 
     
