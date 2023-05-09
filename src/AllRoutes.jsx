@@ -13,6 +13,8 @@ import Products from './Pages/Products/Products'
 import EditCategory from './Pages/EditCategory/EditCategory'
 import EditProduct from './Pages/EditProduct/EditProduct'
 import Loading from './Pages/Loading/Loading'
+import Order from './Pages/Orders/Order'
+import OrderDetalis from './Pages/Orders/OrderDetails/OrderDetalis'
 const AllRoutes = () => {
   return (
     <Routes>
@@ -29,6 +31,8 @@ const AllRoutes = () => {
         <Route path='/home/overview' element={<OverviewPage/>}/>
         <Route path='/products/:category' element={<Products/>} />
         <Route path='/products/:category/:id' element={<SingleProduct/>}/>
+        <Route path='/orders' element={<Order/>}/>
+        <Route path='/orders/orderdetails' element={<OrderDetalis/>}/>
     </Routes>
   )
 }

@@ -26,7 +26,7 @@ const Products = () => {
           <div className='product-list-container'>
             {products.filter(p=> p.category==category).map(p=>(
              
-                <div className="product-list-item shadow card" key={p._id}>
+                <div className="product-list-item shadow card mb-3" key={p._id}>
                     <div className="img-container">
                       <img src={p.image} className='card-img-top' alt={p.name} />
                     </div>

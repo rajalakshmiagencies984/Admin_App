@@ -16,9 +16,10 @@
             border-radius: 24px;
             overflow: hidden;
             width: 28%;
+            background-color: rgb(214, 251, 207);
             .img-container{
                 height: 200px;
-                background-color: var(--yellow);
+                background-color: var(--white);
                 img{
                      height: 100%;
                      width: 100%;
@@ -28,7 +29,7 @@
         }
         .card-body{
             .view-btn{
-                background-color: var(--yellow);
+                background-color: rgba(0, 128, 0, 0.749);
                 color: var(--white);
                 border-radius:12px;
                 padding: 6px 12px;

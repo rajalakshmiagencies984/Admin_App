@@ -26,7 +26,13 @@ const SideBar = () => {
       icon:"production_quantity_limits",
       title:"Add Product",
       link:"/product/add"
+    },
+    {
+      icon:"production_quantity_limits",
+      title:"Orders",
+      link:"/orders"
     }
+
   ]
 
   const handleNavigate = (link)=>{
