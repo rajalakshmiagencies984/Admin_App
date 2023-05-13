@@ -5,9 +5,16 @@ import { useNavigate } from 'react-router-dom'
 const LandingPage = () => {
   const navigate = useNavigate();
   useEffect(()=>{
+    const getToken = async()=>{
+      let token =await localStorage.getItem('AdminRA')
+      if(!token){
+          navigate('/login')
+      }else{
+        navigate('/home')
+      }
+    }
       setTimeout(()=>{
-          navigate('/home');
-
+        getToken()
       },3000)
   },[navigate])
   return (

@@ -4,12 +4,27 @@ import SideBar from '../../Components/SideBar/SideBar'
 import FormHeader from '../../Components/FormHeader/FormHeader'
 import Input from '../../Components/Input/Input'
 import Button from '../../Components/Button/Button'
-
+import { API_newAdmin } from '../../api'
+import { useDispatch } from 'react-redux'
+import { setLoading } from '../../reducers/features/loading/loadingSlice'
+import { useNavigate } from 'react-router-dom'
 const AddAdmin = () => {
     const [name,setName]=useState("")
     const [email,setEmail]=useState("")
     const [phone,setPhone]=useState("")
     const [password,setPassword]=useState("")
+    const dispatch = useDispatch();
+    const navigation = useNavigate()
+    const handleRegister = async()=>{
+      dispatch(setLoading(true))
+      try {
+          const {data}=await API_newAdmin({name,email,password,phone})
+          navigation('/home')
+      } catch (error) {
+        console.log(error)
+      }
+      dispatch(setLoading(false))
+    }
 
     const inputs =[
         {
@@ -63,11 +78,11 @@ const AddAdmin = () => {
                 <Input key={idx} {...i} />
               ))}
 
-              <Button value="Create Admin" />
+              <Button handleClick={()=>handleRegister()} value="Create Admin" />
 
             </form>
           </div>
-  
+
           </div>
         </div>
     </div>

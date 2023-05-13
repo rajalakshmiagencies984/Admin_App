@@ -1,0 +1,14 @@
+.orders-container{
+    width: 90%;
+    height: 100vh;
+    float: right;
+    .order-buttons{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .table-container{
+        display: flex;
+        justify-content: center;
+    }
+}
