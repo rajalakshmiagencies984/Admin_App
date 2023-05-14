@@ -26,10 +26,10 @@ const Categories = () => {
     dispatch(setLoading(true))
     e.preventDefault();
     try {
-      const {data}=await API_deleteCategory({id});
+      const {data}=await API_deleteCategory({data:{id}});
       dispatch(deleteCategory(Boolean(id)))
     } catch (error) {
-      
+
     }
     dispatch(setLoading(false))
   }
@@ -40,7 +40,7 @@ const Categories = () => {
         <div className="row p-2" >
             {category.map((c)=>(
               <div key={c._id}  className='col-4 shadow category-list' style={{background:c.background,color:c.color}}>
-                
+
                 <div className="icon-top">
                     <div className='shadow'  style={{background:c.color,width:"fit-content",borderRadius:"50%",padding:"6px"}} role="button" onClick={(e)=>handleNavigateEdit(e,c._id)}>
                       <MatericalIcon icon="edit" size={24} color={c.background} />
@@ -62,7 +62,7 @@ const Categories = () => {
                 <div role="button"  onClick={(e)=>handleNaviagte(e,c.title)} style={{background:c.color,color:c.background}} className="category-card-bottom">
                    <div>
                         {c.products.length} Products
-                    </div> 
+                    </div>
                     <div>
                         <MatericalIcon icon={"chevron_right"} size={26} color={c.background}  />
                     </div>
@@ -76,7 +76,7 @@ const Categories = () => {
 }
 
 <div>
-  
+
 </div>
 export default Categories
 

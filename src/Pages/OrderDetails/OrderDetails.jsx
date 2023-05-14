@@ -18,9 +18,9 @@ const OrderDetalis = () => {
     <>
         <SideBar />
         <div className="order-details-container my-5">
-            {orders.filter(o=> o._id==id).map(o=>{
-              const user = users.filter(u=> u._id == o.user)[0]
-              const address = user.address.filter(a=> a._id == o.address)[0]
+            {orders.filter(o=> o._id===id).map(o=>{
+              const user = users.filter(u=> u._id === o.user)[0]
+              const address = user.address.filter(a=> a._id === o.address)[0]
 
               return (
                 <div className='order-item' key={id}>
@@ -29,7 +29,7 @@ const OrderDetalis = () => {
                         <h1>Products</h1>
                         <div>
                           {o.products.map((p,idx)=>{
-                            const product = products.filter(p1=>p1._id == p.product_id)[0]
+                            const product = products.filter(p1=>p1._id === p.product_id)[0]
                             return(
                               <div  key={idx}>
                                 <div>

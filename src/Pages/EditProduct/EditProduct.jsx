@@ -146,7 +146,7 @@ const EditProduct = () => {
                 button:"Add Quantity",
                 delete:(e,id)=>{
                     e.preventDefault();
-                    const data = prices.filter(p=> p.id!=id)
+                    const data = prices.filter(p=> p.id!==id)
                     setPrices([...data])
                 }
             },
@@ -205,7 +205,7 @@ const EditProduct = () => {
             }
         ]
 
-        const handleSubmit = async()=>{ 
+        const handleSubmit = async()=>{
             dispatch(setLoading(true))
             let obj={
                 name,
@@ -242,7 +242,7 @@ const EditProduct = () => {
             setEffects(data.effects)
             dispatch(setLoading(false))
         },[id])
-   
+
   return (
     <>
     <SideBar />
@@ -253,11 +253,11 @@ const EditProduct = () => {
                     <div className="card-body">
                         <FormHeader />
                             <p className="heading text-center">Edit {name}</p>
-                               
+
                                 <form >
                                     {inputs.map((i,idx)=>(
                                         <div key={idx}>
-                                            {i.type==="select" ? <SelectTag  {...i} /> : i.type==="file" ?<FileInput 
+                                            {i.type==="select" ? <SelectTag  {...i} /> : i.type==="file" ?<FileInput
                                             {...i} /> : i.type==="dynamic" ? <DynamicInput inputs={i} /> : <Input  {...i} /> }
                                         </div>
                                     ))}
@@ -268,7 +268,7 @@ const EditProduct = () => {
                 </div>
             </div>
         </div>
-       
+
     </div>
     </>
   )

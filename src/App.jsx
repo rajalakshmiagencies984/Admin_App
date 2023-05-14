@@ -8,8 +8,7 @@ import { getProducts } from './reducers/features/products/productSlice'
 import Loading from './Pages/Loading/Loading'
 import { setLoading } from './reducers/features/loading/loadingSlice'
 import Alert  from './Components/Alert/Alert'
-import { addAlert,deleteAlert } from './reducers/features/alert/alertSlice'
-import {v4 as uuidv4} from 'uuid'
+
 import { setOrders } from './reducers/features/orders/orderSlice'
 import { setUsers } from './reducers/features/users/userSlice'
 const App = () => {
@@ -36,7 +35,7 @@ const App = () => {
           }
       }
       getProductData()
-     
+
       const getOrdersData=async()=>{
         try {
             const {data}=await API_getOrders();

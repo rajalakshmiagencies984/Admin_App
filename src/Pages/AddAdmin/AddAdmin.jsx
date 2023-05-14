@@ -18,7 +18,7 @@ const AddAdmin = () => {
     const handleRegister = async()=>{
       dispatch(setLoading(true))
       try {
-          const {data}=await API_newAdmin({name,email,password,phone})
+          await API_newAdmin({name,email,password,phone})
           navigation('/home')
       } catch (error) {
         console.log(error)

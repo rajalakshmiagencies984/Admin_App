@@ -16,7 +16,7 @@ import moment from 'moment/moment'
 const SingleProduct = () => {
 
   const navigate=useNavigate();
-  const {id,category}=useParams();  
+  const {id,category}=useParams();
   const products = useSelector((state)=>(state.product))
   const categories = useSelector((state)=>(state.category))
   const dispatch = useDispatch();
@@ -29,17 +29,17 @@ const SingleProduct = () => {
     e.preventDefault();
     dispatch(setLoading(true))
     try {
-      const {data}=await API_deleteProduct({id});
+      const {data}=await API_deleteProduct({data:{id}});
       dispatch(deleteProduct(Boolean(id)))
       dispatch(decreaseCategoryCount(Object({category,id})))
     } catch (error) {
-      
+
     }
     dispatch(setLoading(false))
   }
 
   return (
-    <> 
+    <>
     <SideBar />
     <div className='single-product-container'>
       {products.filter(p=> p._id==id).map(p=>(
@@ -119,8 +119,8 @@ const SingleProduct = () => {
 
     </div>
 
-    
-          
+
+
         </div>
 
       ))}

@@ -14,14 +14,14 @@ export const categorySlice = createSlice({
         _id:uuidv4()
     }
   ]
-    
+
   ,
   reducers: {
     getCategories:(state,action)=>{
         return state=[...action.payload]
     },
-    addCategory:(state,action)=>{  
-     return state=[...state,action.payload]    
+    addCategory:(state,action)=>{
+     return state=[...state,action.payload]
     },
     addCategoryCount:(state,action)=>{
       const {title,_id}=action.payload;
@@ -31,12 +31,12 @@ export const categorySlice = createSlice({
     },
     editCategory:(state,action)=>{
         const {_id}=action.payload
-      
-        const idx= state.findIndex(s=> s._id==_id);
-      
-        
+
+        const idx= state.findIndex(s=> s._id===_id);
+
+
         state[idx]={...action.payload};
-     
+
         return state
     },
     decreaseCategoryCount:(state,action)=>{
@@ -48,10 +48,10 @@ export const categorySlice = createSlice({
     deleteCategory:(state,action)=>{
       const id=action.payload
       console.log(id)
-      return state.filter(s=> s._id != id )
+      return state.filter(s=> s._id !== id )
     }
 
-    
+
   },
 })
 

@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import './Orders.scss'
 import SideBar from '../../Components/SideBar/SideBar'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Button from '../../Components/Button/Button'
 import OrderTable from '../../Components/OrderTable/OrderTable'
-import { useNavigate } from 'react-router-dom'
+
 const Order = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
+
+
   const orders = useSelector((state)=>(state.order))
   const users = useSelector((state)=>(state.user))
   const [all,setAll]=useState(true)
   const [accept,setAccepted]=useState(false)
   const [delivered,setDelivered]=useState(false)
   useEffect(()=>{
-    if(all==true){
+    if(all===true){
       setAccepted(false)
       setDelivered(false)
     }
   },[all])
   useEffect(()=>{
-    if(accept==true){
+    if(accept===true){
       setAll(false)
       setDelivered(false)
     }
   },[accept])
   useEffect(()=>{
-    if(delivered==true){
+    if(delivered===true){
       setAccepted(false)
       setAll(false)
     }
@@ -50,8 +50,8 @@ const Order = () => {
           </div>
 
           <div className="table-container">
-            {all ? <OrderTable orders={orders.filter(o=>o.status=="ordered")} users={users}   mode="New" /> :
-            accept ? <OrderTable orders={orders.filter(o=>o.status=="accepted")} users={users} mode="Accepted" /> : <OrderTable orders={orders.filter(o=>o.status=="delivered")} users={users} mode="Delivered"/>
+            {all ? <OrderTable orders={orders.filter(o=>o.status==="ordered")} users={users}   mode="New" /> :
+            accept ? <OrderTable orders={orders.filter(o=>o.status==="accepted")} users={users} mode="Accepted" /> : <OrderTable orders={orders.filter(o=>o.status==="delivered")} users={users} mode="Delivered"/>
             }
           </div>
       </div>

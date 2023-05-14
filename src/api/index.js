@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = axios.create({baseURL:'http://localhost:5000/api/'})
+const API = axios.create({baseURL:'https://rs-server-18ld.onrender.com/api/'})
 
 
 export const API_getCategories  = ()=> API.get('/category');

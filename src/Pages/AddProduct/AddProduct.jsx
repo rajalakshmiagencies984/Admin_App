@@ -144,7 +144,7 @@ const AddProduct = () => {
                 button:"Add Quantity",
                 delete:(e,id)=>{
                     e.preventDefault();
-                    const data = prices.filter(p=> p.id!=id)
+                    const data = prices.filter(p=> p.id!==id)
                     setPrices([...data])
                 }
             },
@@ -203,7 +203,7 @@ const AddProduct = () => {
             }
         ]
 
-        const handleSubmit = async()=>{ 
+        const handleSubmit = async()=>{
             let obj={
                 name,
                 stock,
@@ -226,7 +226,7 @@ const AddProduct = () => {
                 console.log(error)
             }
         }
-   
+
   return (
     <>
     <SideBar />
@@ -237,11 +237,11 @@ const AddProduct = () => {
                     <div className="card-body">
                         <FormHeader />
                             <p className="heading text-center">Add New Product</p>
-                               
+
                                 <form >
                                     {inputs.map((i,idx)=>(
                                         <div key={idx}>
-                                            {i.type==="select" ? <SelectTag  {...i} /> : i.type==="file" ?<FileInput 
+                                            {i.type==="select" ? <SelectTag  {...i} /> : i.type==="file" ?<FileInput
                                             {...i} /> : i.type==="dynamic" ? <DynamicInput inputs={i} /> : <Input  {...i} /> }
                                         </div>
                                     ))}
@@ -252,7 +252,7 @@ const AddProduct = () => {
                 </div>
             </div>
         </div>
-       
+
     </div>
     </>
   )
