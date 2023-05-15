@@ -96,7 +96,7 @@ const OrderTable = ({orders,users,mode}) => {
               <td>{moment(o.orderedOn).fromNow()}</td>
               {mode=="New" &&<>
               <td><Button handleClick={()=>acceptOrder(o._id)} value="Accept"/></td>
-              <td><Button  handleClick={()=>rejectOrder(o_id)} value="Reject"/></td>
+              <td><Button  handleClick={()=>rejectOrder(o._id)} value="Reject"/></td>
               </>}
               {
                 mode=="Accepted" &&<>

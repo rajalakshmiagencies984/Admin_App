@@ -33,3 +33,5 @@ export const API_deliverOrder =(data)=>API.post('/order/delivery',data)
 export const API_newAdmin =(data)=>API.post('/admin/register',data)
 
 export const API_adminLogin =(data)=>API.post('/admin/login',data)
+
+//
