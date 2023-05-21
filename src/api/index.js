@@ -24,7 +24,7 @@ export const API_getOrders = ()=>API.get('/order')
 
 export const API_acceptOrder = (data)=>API.post('/order/accept',data)
 
-export const API_rejectOrder =(data)=>API.API_rejectOrder('/order/reject',data)
+export const API_rejectOrder =(data)=>API.post('/order/reject',data)
 
 
 export const API_deliverOrder =(data)=>API.post('/order/delivery',data)

@@ -73,13 +73,12 @@ const AddAdmin = () => {
           <FormHeader />
           <p className="text-center heading">Create New Admin</p>
           <div className="form-container my-3">
-            <form >
+            <form>
               {inputs.map((i,idx)=>(
                 <Input key={idx} {...i} />
               ))}
 
               <Button handleClick={()=>handleRegister()} value="Create Admin" />
-
             </form>
           </div>
 

@@ -40,7 +40,6 @@ const Login = () => {
     try {
       const {data}=await API_adminLogin({email,password})
       await localStorage.setItem('AdminRA',JSON.stringify({...data}))
-      console.log(data)
       const user = data.user
       dispatch(setAdmin({...user}))
       navigation('/home')
@@ -56,8 +55,7 @@ const Login = () => {
           <div className="box shadow">
           <FormHeader />
           <div className="form-container my-3">
-            <form >
-
+            <form  >
             {
               inputs.map((i,idx)=>(
                 <Input key={idx} {...i}  />

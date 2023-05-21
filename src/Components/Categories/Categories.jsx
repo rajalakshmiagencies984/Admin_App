@@ -27,7 +27,7 @@ const Categories = () => {
     e.preventDefault();
     try {
       const {data}=await API_deleteCategory({data:{id}});
-      dispatch(deleteCategory(Boolean(id)))
+      dispatch(deleteCategory(id))
     } catch (error) {
 
     }

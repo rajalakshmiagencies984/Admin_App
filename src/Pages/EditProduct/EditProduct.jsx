@@ -71,14 +71,6 @@ const EditProduct = () => {
         value:category
         },
        {
-            type:"number",
-            id:"stock",
-            label:"Stock",
-            setData:(val)=>{
-                setStock(val)
-            },
-            value:stock
-        },{
                 type:"dynamic",
                 title:"Chemical Composition",
                 inputs:[
@@ -135,10 +127,19 @@ const EditProduct = () => {
                             setPrice(val)
                         },
                         value:price
-                    }
+                    },
+                    {
+                        type:"number",
+                        id:"stock",
+                        label:"Stock",
+                        setData:(val)=>{
+                            setStock(val)
+                        },
+                        value:stock
+                    },
                 ],
                 setData:()=>{
-                    setPrices([...prices,{quantity,price,id:uuidv4()}])
+                    setPrices([...prices,{quantity,price,stock,id:uuidv4()}])
                     setQuantity("")
                     setPrice("")
                 },
@@ -209,7 +210,7 @@ const EditProduct = () => {
             dispatch(setLoading(true))
             let obj={
                 name,
-                stock,
+                id,
                 image,
                 category,
                 prices,
@@ -220,7 +221,8 @@ const EditProduct = () => {
             try {
                 const {data}=await API_editProduct(obj);
                 dispatch(editProduct(Object(data)))
-                navigate(`/product/${data.category}/${data._id}`);
+                console.log(data)
+                navigate(`/products/${data.category}/${id}`);
             } catch (error) {
                 console.log("error")
                 console.log(error)

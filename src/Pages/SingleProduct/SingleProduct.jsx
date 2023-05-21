@@ -30,7 +30,8 @@ const SingleProduct = () => {
     dispatch(setLoading(true))
     try {
       const {data}=await API_deleteProduct({data:{id}});
-      dispatch(deleteProduct(Boolean(id)))
+      navigate(`/products/${category}`)
+      dispatch(deleteProduct(id))
       dispatch(decreaseCategoryCount(Object({category,id})))
     } catch (error) {
 
@@ -60,8 +61,7 @@ const SingleProduct = () => {
                 <div className="card-body">
                     <h4>Stats</h4>
                     <ul className="list-group">
-                          <li className="list-group-item">Sold - {p.sold} </li>
-                          <li className="list-group-item">In Stock - {p.stock}</li>
+                          <li className="list-group-item">Sold - {p.sold || 0} </li>
                           <li className='list-group-item'>GST - {categories.filter(c=> c.title==category)[0]?.gst} % </li>
                           <li className='list-group-item'>Created On - {moment(p.createdOn).fromNow()}</li>
                     </ul>
@@ -76,7 +76,7 @@ const SingleProduct = () => {
                     <h4>Quantities</h4>
                     <ul className="list-group">
                         {p.prices.map(price=>(
-                          <li className='list-group-item' key={price._id}>{price.quantity} - &#8377; {price.price}</li>
+                          <li className='list-group-item' key={price._id}>{price.quantity} - &#8377; {price.price}  Stock-{price.stock}</li>
                           ))}
                     </ul>
                 </div>

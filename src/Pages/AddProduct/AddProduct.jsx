@@ -14,7 +14,7 @@ import { addCategoryCount } from '../../reducers/features/category/categorySlice
 import { addProduct } from '../../reducers/features/products/productSlice'
 import { useNavigate } from 'react-router-dom'
 
-
+import { setLoading } from '../../reducers/features/loading/loadingSlice'
 
 const AddProduct = () => {
 
@@ -68,15 +68,7 @@ const AddProduct = () => {
 
         value:category
         },
-       {
-            type:"number",
-            id:"stock",
-            label:"Stock",
-            setData:(val)=>{
-                setStock(val)
-            },
-            value:stock
-        },{
+      {
                 type:"dynamic",
                 title:"Chemical Composition",
                 inputs:[
@@ -101,8 +93,7 @@ const AddProduct = () => {
                 ],
                 setData:()=>{
                     setChemical([...chemicals,{name:chemicalName,percentage:percent,id:uuidv4()}])
-                    setChemicalName("")
-                    setPercent("")
+
                 },
                 value:chemicals,
                 button:"Add Chemical Composition",
@@ -133,12 +124,20 @@ const AddProduct = () => {
                             setPrice(val)
                         },
                         value:price
-                    }
+                    },
+                    {
+                        type:"number",
+                        id:"stock",
+                        label:"Stock",
+                        setData:(val)=>{
+                            setStock(val)
+                        },
+                        value:stock
+                    },
                 ],
                 setData:()=>{
-                    setPrices([...prices,{quantity,price,id:uuidv4()}])
-                    setQuantity("")
-                    setPrice("")
+                    setPrices([...prices,{quantity,price,stock,id:uuidv4()}])
+
                 },
                 value:prices,
                 button:"Add Quantity",
@@ -164,7 +163,7 @@ const AddProduct = () => {
                 ],
                 setData:()=>{
                     setProducts([...products,{name:crop,id:uuidv4()}])
-                    setCrop("")
+
                 },
                 value:products,
                 button:"Add Product",
@@ -191,7 +190,7 @@ const AddProduct = () => {
                 ],
                 setData:()=>{
                     setEffects([...effects,{point:point,id:uuidv4()}])
-                    setPoint("");
+
                 },
                 value:effects,
                 button:"Add Point",
@@ -204,9 +203,10 @@ const AddProduct = () => {
         ]
 
         const handleSubmit = async()=>{
+            dispatch(setLoading(true))
+            console.log(prices)
             let obj={
                 name,
-                stock,
                 image,
                 category,
                 prices,
@@ -225,6 +225,7 @@ const AddProduct = () => {
                 console.log("error")
                 console.log(error)
             }
+            dispatch(setLoading(false))
         }
 
   return (

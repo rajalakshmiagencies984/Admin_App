@@ -9,6 +9,7 @@ import FileInput from '../../Components/FileInput/FileInput'
 import Preview from '../../Components/Preview/Preview'
 import './AddCategory.scss'
 import { API_addNewCategory } from '../../api'
+import { setLoading } from '../../reducers/features/loading/loadingSlice'
 import { addCategory } from '../../reducers/features/category/categorySlice'
 
 
@@ -26,14 +27,15 @@ const AddCategory = () => {
         setPreview(!preview)
     }
     const handleSubmit =async()=>{
+        dispatch(setLoading(true))
         try {
             const {data} = await API_addNewCategory({title,image,gst,background,color});
             dispatch(addCategory(Object(data)))
             navigate('/home')
         } catch (error) {
-            alert("Error");
-            console.log(error)
+            console.log(error.message)
         }
+        dispatch(setLoading(false))
     }
     const inputs=[
         {
@@ -90,9 +92,9 @@ const AddCategory = () => {
           <div className="box shadow">
           <FormHeader />
           <p className="text-center heading">Create New Category</p>
-          {preview ? 
+          {preview ?
           <>
-            <Preview name={title} image={image} background={background} color={color}  /> 
+            <Preview name={title} image={image} background={background} color={color}  />
             <div className='row'>
                     <div className="col-6">
                         <Button handleClick={handleSubmit} value="Create Category" />
@@ -110,7 +112,7 @@ const AddCategory = () => {
                    {i.type==="file" ?<FileInput  {...i} />  : <Input {...i} /> }
                 </div>
              ))}
-            <Button handleClick={handlePreview} value="Preview" /> 
+            <Button handleClick={handlePreview} value="Preview" />
             </form>
           </div>
         }
